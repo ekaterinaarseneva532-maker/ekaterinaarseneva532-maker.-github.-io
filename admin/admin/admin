@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Панель управления — Мои авторские работы</title>
+<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
+<body>
+<main class="admin-page">
+  <p class="eyebrow">ПАНЕЛЬ УПРАВЛЕНИЯ</p>
+  <h1>Редактирование сайта</h1>
+  <p class="lead">Через Pages CMS можно добавлять и менять работы, фотографии, описания, контакты и ссылки на социальные сети.</p>
+  <a class="button" href="https://app.pagescms.org/" target="_blank" rel="noopener">Открыть панель Pages CMS</a>
+  <p><a class="back" href="{{ '/' | relative_url }}">← Вернуться на сайт</a></p>
+</main>
+</body>
+</html>
