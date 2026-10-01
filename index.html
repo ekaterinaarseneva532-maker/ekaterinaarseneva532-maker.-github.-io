@@ -1,57 +1,60 @@
-<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Мои авторские работы</title>
-<meta name="description" content="Авторские декоративные работы и изделия ручной работы.">
-<style>
-body{margin:0;font-family:Arial,sans-serif;background:#f7f5f1;color:#222}
-header{background:#222;color:white;padding:20px}
-header a{color:white;text-decoration:none}
-main{max-width:1000px;margin:auto;padding:50px 20px}
-h1{font-size:42px}
-.button{display:inline-block;background:#222;color:white;padding:13px 22px;border-radius:6px;text-decoration:none}
-section{margin-top:50px}
-footer{background:#222;color:white;text-align:center;padding:30px}
-</style>
-</head>
-<body>
-
-<header>
-<strong>Мои авторские работы</strong>
-</header>
-
-<main>
-
-<section>
-<h1>Авторские работы ручной работы</h1>
-
-<p>
-Добро пожаловать на мой сайт. Здесь представлены мои авторские декоративные работы,
-созданные вручную.
-</p>
-
-
-<a class="button" href="./works/index.html">Смотреть работы</a>
-<section>
-<h2>О моих работах</h2>
-<p>
-Каждая работа создаётся вручную. Здесь будут фотографии, размеры,
-материалы, техника изготовления и стоимость работ.
-</p>
+---
+layout: default
+title: Главная
+---
+<section class="hero">
+  <div>
+    <p class="eyebrow">АВТОРСКИЕ РАБОТЫ</p>
+    <h1>{{ site.data.settings.name }}</h1>
+    <p class="lead">{{ site.data.settings.tagline }}</p>
+    <div class="buttons">
+      <a class="button" href="#works">Смотреть работы</a>
+      <a class="button secondary" href="#contacts">Контакты</a>
+    </div>
+  </div>
+  {% assign featured = site.works | first %}
+  {% if featured and featured.image %}
+    <img class="hero-image" src="{{ featured.image | relative_url }}" alt="{{ featured.title }}">
+  {% endif %}
 </section>
 
-<section>
-<h2>Контакты</h2>
-<p>По вопросам приобретения работ и сотрудничества обращайтесь ко мне.</p>
+<section id="works">
+  <div class="section-head">
+    <div><p class="eyebrow">ГАЛЕРЕЯ</p><h2>Мои работы</h2></div>
+    <a href="{{ '/works/' | relative_url }}">Все работы →</a>
+  </div>
+  <div class="grid">
+    {% assign works = site.works | sort: "date" | reverse %}
+    {% for work in works limit:12 %}
+      <article class="card">
+        <a href="{{ work.url | relative_url }}">
+          {% if work.image %}<img src="{{ work.image | relative_url }}" alt="{{ work.title }}">{% endif %}
+          <div class="card-body">
+            <h3>{{ work.title }}</h3>
+            {% if work.category %}<p>{{ work.category }}</p>{% endif %}
+          </div>
+        </a>
+      </article>
+    {% endfor %}
+  </div>
 </section>
 
-</main>
+<section class="about">
+  <p class="eyebrow">О МАСТЕРЕ</p>
+  <h2>{{ site.data.settings.name }}</h2>
+  <p>{{ site.data.settings.about }}</p>
+</section>
 
-<footer>
-Мои авторские работы
-</footer>
-
-</body>
-</html>
+<section id="contacts" class="contacts">
+  <p class="eyebrow">СВЯЗЬ</p>
+  <h2>Где меня найти</h2>
+  <div class="socials">
+    {% if site.data.settings.phone %}<a href="tel:{{ site.data.settings.phone }}">Телефон</a>{% endif %}
+    {% if site.data.settings.email %}<a href="mailto:{{ site.data.settings.email }}">E-mail</a>{% endif %}
+    {% if site.data.settings.website %}<a href="{{ site.data.settings.website }}">Личный сайт</a>{% endif %}
+    {% if site.data.settings.vk %}<a href="{{ site.data.settings.vk }}">VK</a>{% endif %}
+    {% if site.data.settings.telegram %}<a href="{{ site.data.settings.telegram }}">Telegram</a>{% endif %}
+    {% if site.data.settings.instagram %}<a href="{{ site.data.settings.instagram }}">Instagram</a>{% endif %}
+    {% if site.data.settings.youtube %}<a href="{{ site.data.settings.youtube }}">YouTube</a>{% endif %}
+  </div>
+</section>
