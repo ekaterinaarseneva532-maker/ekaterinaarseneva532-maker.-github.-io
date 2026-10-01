@@ -1,0 +1,30 @@
+---
+layout: default
+title: "Мои работы"
+---
+
+<h1>Мои работы</h1>
+
+<p>Здесь собраны мои авторские работы, выполненные вручную.</p>
+
+<div class="works-grid">
+{% for work in site.works %}
+  <article class="work-card">
+    {% if work.image %}
+      <img src="{{ work.image | relative_url }}" alt="{{ work.title }}">
+    {% endif %}
+
+    <div class="work-card-content">
+      <h2>
+        <a href="{{ work.url | relative_url }}">{{ work.title }}</a>
+      </h2>
+
+      {% if work.description %}
+        <p>{{ work.description }}</p>
+      {% endif %}
+
+      <a class="button" href="{{ work.url | relative_url }}">Подробнее</a>
+    </div>
+  </article>
+{% endfor %}
+</div>
